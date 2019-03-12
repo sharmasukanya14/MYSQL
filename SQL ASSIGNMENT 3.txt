@@ -1,0 +1,88 @@
+1.Write a query to fetches and displays all the faculties details who don’t have an email id.
+
+2.Write a query to display the id, name, track and location of all Faculties who’s Experience are greater than 4 years.
+
+3.Select all the modules whose duration> 150.
+
+4.Select all the FacultyId, Faculty name whose qualification is not ‘Bachelor of Technology’.
+
+5.Select all the modules whose duration is between 100 and 200.
+
+
+1.select * from facultydetail where faculty_email = null;
+
+2.select * from facultydetail where faculty_experience > 4;
+
+3.select * from moduledetails where module_duration >150;
+
+4.select faculty_id ,faculty_name from facultydetail where faculty_qualification <> 'bachelor of technology';
+
+5.select * from moduledetails where module_duration between 100 and 200;
+
+
+
+6.Display the FacultyId, Facultyname with first name starting with ‘A'.
+
+7.Display the FacultyId, Facultyname whose first name contains a character ‘M’
+
+8.Display the names of all the modules where the module name is does not exists.
+
+9.Write a query to display the module name and module durationof the entire modules.
+
+10.Write a query to display list of all the module id and module nameswith first letter capital of module name from ModuleDetails table.
+
+
+6.select faculty_id,faculty_name from facultydetail where 
+faculty_name like 'A%';
+
+
+7.select faculty_id,faculty_name from facultydetail where 
+faculty_name like '%M%';
+
+
+8.select module_name from moduledetails where module_name =null;
+
+9.select module_name,module_duration from moduledetails;
+
+10.select module_name,module_id from moduledetails  where module_name regexp binary  '^[A -Z]'
+
+
+
+11.Write a query to display the module id and the number of days between the current date and module start date from Student_Status table.
+
+12.Write a query to concatenate the Module Name and Module id in the below mentioned format and display all the modules from the moduleDetailstable. “ModuleId is Module_Id and Module Name is ModuleName”
+
+13.Write a query to display all the Module Name in upper case.
+
+14.Write a query to display all the characters between 2 to 4 of the Module name column for all the modules in the ModuleDetails table.
+
+15.Write a query to calculate average of all the module base fees.
+
+16.Write a query which will return the total count of all the students.
+
+17.Write a query to display the total faculty members not having their email ID.
+
+
+11.select  module_id , datediff( curdate(),start_date)from student_status ;
+
+12.select concat('moduleid  is ' ,module_id, ' and modulename is ' ,module_name) from moduledetails
+;
+
+13.select upper(module_name ) from moduledetails;
+
+14.select substring(module_name,2,4) from moduledetails;
+
+
+15.select avg(module_duration) from moduledetails
+;
+
+16.select count(*) from student_status ;
+
+17.select count(faculty_email) from facultydetail where faculty_email= null;
+
+
+
+
+
+
+

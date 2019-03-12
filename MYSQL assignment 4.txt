@@ -1,0 +1,59 @@
+1.Write a query to fetch and display the number of students enrolled for modules on a specific date grouped by start date and display start date and 
+total number of students.
+
+2.Write a query to fetch and displaythe number of students enrolled for modules where facultyid is ‘F001’ grouped by start date and display
+ start date and total number of students.
+
+3.Write a query to fetch and displaythe number of students enrolled for modules where facultyid is ‘F001’ grouped by module start date and 
+   display module start date and total number of students where the total number of students> 2.
+
+4.Write a query to fetch and displayall the modules in ascending order of module duration.
+
+5.Write aquery to fetch and displaythe student’sname, their module enrolled (module name and module id). Order them according to their name.
+
+6.Write a query to fetch and display faculty_id and batch_id which will fetchall the combinations of facultyIDs and batch IDs.
+
+7.Write a query to fetch and displaythe records of all the details from Student_Status and batch_info, wherever batch_id is common in both the tables.
+
+8.Write a query to fetch and display the student IDs of the students tagged to facultyand all the faculty IDs irrespective of whether there are 
+any students tagged to them or not. Hint: Use Student_status and FacultyDetails tables and Right Outer Join
+
+9.Write a query to fetch and display the studentIDs of the students tagged to faculties and all the faculty IDs irrespective of whether there are any students tagged to them or not. 
+Hint: Use Student_status and FacultyDetails tables and LeftOuter Join
+
+10.Write a query to fetch and displaythe student IDs ofall the students and faculty IDs of all faculties irrespective of whetherthese is any association 
+between students and faculty Ids and vice versa.Hint: Use Student_status and FacultyDetails tables and FullOuter Jointhough 
+full outer join is not supported by MYSQL we have to find out a way to implement that.
+
+
+1.select count(*),start_date from student_status group by(start_date)
+;
+
+2.select count(*),start_date from student_status  where faculty_id = 'F001'group by(start_date)
+;
+
+3.select count(student_id),start_date from student_status  where faculty_id = 'F001'group by(start_date)
+ having count(student_id)>2;
+
+4.select * from moduledetails order by module_duration ;
+
+5.select s.student_id,s.module_id,m.student_id from student_status s 
+join studentdetail m on s.student_id = m.student_id join moduledetails n 
+on 
+s.module_id = n.module_id
+ ;
+
+6.select b.batch_id,f.faculty_id from batchdetail b cross join facultydetail f ; 
+
+7.select * from student_status s  inner join batchdetail b on s.batch_id = b.batch_id
+ ;
+
+8.select  s.student_id,m.faculty_id from student_staus right outer join facultydetail m on s.faculty_id = m.faculty_id ;
+
+9.select  s.student_id,m.faculty_id from student_staus left outer join facultydetail m on s.faculty_id = m.faculty_id ;
+
+10.Select s.student_id, s.faculty_id, f.faculty_id from student_status s left outer join faculty_details f on s.faculty_id=f.faculty_id
+  union
+ Select s.student_id, s.faculty_id, f.faculty_id from student_status s right outer join faculty_details f on s.faculty_id=f.faculty_id ;
+
+
